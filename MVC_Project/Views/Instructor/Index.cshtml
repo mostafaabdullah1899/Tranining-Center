@@ -1,0 +1,39 @@
+﻿@model List<Instructor>
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "_MyLayout";
+    // Layout = null;
+}
+<!-- RenderSection("SectionFooter") -->
+@*@section SectionFooter
+{
+    <h2> Go To SectionFooter</h2>
+}*@
+<!--RenderBody-->
+<style> </style>
+<h1 id="inst">Index</h1>
+<a class="btn btn-success" href="/Instructor/Add">Add Instructor</a>
+<table  class="table table-borderd">
+    <tr>
+        <td>Name</td>
+        <td>Salary</td>
+        <td>Department</td>
+         <td>Details</td>
+         <td>Edit</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Salary</td>
+            <td>@item.Department.Name</td>
+            <td><a asp-action="Details" asp-controller="Instructor" asp-route-id="@item.Id" asp-fragment="details">Details</a></td>
+            <td><a href="/Instructor/Edit/@item.Id">Edit</a></td>
+        </tr>
+        
+    }
+
+</table>
+
+@*<h2 id="row"> Welcome</h2>*@
+

@@ -1,0 +1,41 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@Model.Name
+@Model.Address
+@Model.Age
+<!-- Problems of ViewData
+    Magic string =>Key
+    Explicit Custing
+    Action Set ViewDAta
+    View Get ViewData
+-->
+<select class="form-control">
+
+    @foreach (var item in (List<string>)ViewData["branch"])
+   {
+       <option>@item </option>
+   }
+</select>
+
+<h1> Using ViewBag</h1>
+<select class="form-control">
+     <!--Branch as Property return dynamic custing in runtime-->
+    @foreach (var item in ViewBag.branch)
+    {
+       <option>@item </option>
+   }
+</select>
+
+<h2> @ViewData["msg"].ToString()</h2>
+
+
+<h5> @ViewBag.temp</h5> @* NoCusting*@
+
+<!-- Problem of ViewBag Dynamic Propertiy NoComplite-->
+
+<h5> @ViewData["temp"].ToString()</h5>

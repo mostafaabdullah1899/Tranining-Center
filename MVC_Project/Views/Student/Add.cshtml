@@ -1,0 +1,79 @@
+﻿@model Student
+<!--Tag Helper using Only Strong Type-->
+@{
+    ViewData["Title"] = "Add";
+
+    SelectList deptList = new SelectList(ViewBag.dept,"Id","Name");
+    //<!-- ID=>DataValueField Name=>DatatextField in <option> -->
+
+    //<!-- SelectList(IEnumerable) create foreach and input
+    //if(value="@deptItem.Id"==dept_Id )
+    //{Selected}
+    //<option selected value="@deptItem.Id" >@deptItem.Name</option>   
+    //-->
+}
+
+<h1 id="add">Add</h1>
+
+<form asp-action="SaveAdd" asp-controller="Student" asp-fragment="add" method="post">
+
+    <div asp-validation-summary="All"> </div>
+    <!-- Server Side Only
+        Custom Validation server side only
+    -->
+    <!--
+        All=> Display ModelError + Custom Error with Different Key
+        ModelOnly=>Display ModelError only 
+    -->
+
+    <label asp-for="Name"></label>
+    <input  asp-for="Name" class="form-control" /> 
+    <span asp-validation-for="Name" class= "text-danger"> </span>
+    @*Default Error Message*@
+    <label asp-for="Address"></label>
+    <input asp-for="Address" class="form-control" />
+       <span asp-validation-for="Address" class= "text-danger"> </span>
+
+    <label asp-for="Age"></label>
+    <input asp-for="Age" class="form-control" />
+       <span asp-validation-for="Age" class= "text-danger"> </span>
+
+    <label asp-for="Image"></label>
+    <input asp-for="Image" class=form-control/>
+    <span asp-validation-for="Image" class= "text-danger"> </span>
+    
+    <label asp-for="Dept_Id"></label>
+ 
+
+       <select asp-items="deptList" asp-for="Dept_Id" class="form-control">
+          <!--asp-item =>IEnumerable of SelectListItem 
+          asp-for="Dept_Id"
+          Dept_Id=PrimaryKey To Department
+          if Dept_Id==ForeginKey
+          option selected
+          -->
+
+          <option value="0" >Select Department</option>
+           
+       </select>
+       <span asp-validation-for="Dept_Id" class= "text-danger"> </span>
+    
+    <input  type="submit" value="AddStudent" class="btn btn-primary"/>
+
+</form>
+@section Scripts{
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js" ></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" ></script>
+}
+@*<script src="~/lib/jquery/dist/jquery.min.js" ></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+*@
+
+    <!-- unobtrusive=> Client Side -->
+    <!-- DataAnnotations=> Server Side -->
+    <!-- Div Summary => Server Side -->
+    <!--Custom Validation ModelAddError & MyOwn Attribute => Server Side -->
+
+<!-- Remote MyOwn Attribute => Client Side  using Ajax Call-->

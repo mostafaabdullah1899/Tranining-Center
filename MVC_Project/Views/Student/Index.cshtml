@@ -1,0 +1,42 @@
+﻿@model List<Student> 
+<h1> From Controller Student ID=@ViewBag.ServiceId </h1>>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 id="std" >Index</h1>
+<a asp-action="Add" asp-controller="Student" asp-fragment="add" class="btn btn-success"> Add </a>
+
+<table id="add" class="table table-bordered"> 
+  
+        <tr>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Age</td>
+            <td>Image</td>
+            <td>Department</td>
+            <td>Edit</td>
+            <td>Details</td>
+            <td>Delete</td>
+        </tr>
+
+   
+    @foreach (var item in Model)
+    {
+   
+        <tr>
+            <td> @item.Name</td>
+             <td> @item.Address</td>
+              <td> @item.Age</td>
+               <td> <img width="50px" height="50px" src="/Images/@item.Image"> </td>
+               <td> @item.Department.Name</td>
+                <td> <a href="\student\Edit\@item.Id">Edit</a></td>
+                <td> <a href="\student\NewDetails\@item.Id">Details</a></td>
+                 <td> <a href="\student\Delete\@item.Id">Delete</a></td>
+                 
+               
+        </tr>
+        
+    }
+</table>
+

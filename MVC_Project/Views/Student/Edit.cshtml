@@ -1,0 +1,49 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Edit";
+     SelectList deptList = new SelectList(ViewBag.dept,"Id","Name");
+}
+
+<h1>Edit</h1>
+<!--Pure HTML Link-->
+<a href="/Student/Details/1" class="btn btn-success">Details Pure HTML</a> <br />
+
+
+<form asp-action="SaveEdit" asp-controller="Student" asp-route-id="@Model.Id" method="post">
+
+    <div asp-validation-summary="All"> </div>
+
+    <label asp-for="Name"></label>
+    <input  asp-for="Name" class="form-control" /> 
+    <span asp-validation-for="Name" class= "text-danger"> </span>
+    @*Default Error Message*@
+    <label asp-for="Address"></label>
+    <input asp-for="Address" class="form-control" />
+       <span asp-validation-for="Address" class= "text-danger"> </span>
+
+    <label asp-for="Age"></label>
+    <input asp-for="Age" class="form-control" />
+       <span asp-validation-for="Age" class= "text-danger"> </span>
+
+    <label asp-for="Image"></label>
+    <input asp-for="Image" class=form-control/>
+    <span asp-validation-for="Image" class= "text-danger"> </span>
+    
+    <label asp-for="Dept_Id"></label>
+ 
+
+       <select asp-items="deptList" asp-for="Dept_Id" class="form-control">
+          <!--asp-item =>IEnumerable of SelectListItem 
+          asp-for="Dept_Id"
+          Dept_Id=PrimaryKey To Department
+          if Dept_Id==ForeginKey
+          option selected
+          -->
+
+          
+           
+       </select>
+    
+    <input  type="submit" value="Update" class="btn btn-primary"/>
+
+</form>

@@ -1,0 +1,13 @@
+﻿@model Student
+<!-- Strong Partial View Return Model-->
+
+<div class="card" style="width:500px">
+  <img class="card-img-top" src="/Images/@Model.Image" alt="Card image">
+  <div class="card-img-overlay">
+    <h4 class="card-title">@Model.Name</h4>
+    <p class="card-text">@Model.Address</p>
+    <p class="card-text">@Model.Age</p>
+    <p class="card-text">@Model.Department.Name</p>
+    <a href="/Student/Index" class="btn btn-primary">Back To List</a>
+  </div>
+</div>

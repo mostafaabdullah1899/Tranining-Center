@@ -1,0 +1,12 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 id="details">Details</h1>
+
+<ul> 
+    <li>@Model.Name</li>
+    <li>@Model.ManagerName</li>
+</ul>
+<a asp-action="Index" asp-controller="Department" asp-fragment="index"> BackToList</a>

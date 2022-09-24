@@ -1,0 +1,9 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<partial name="_CourseCard" model="Model"  />
+<a asp-action="Edit" asp-route-id="@Model.Id"class="btn btn-primary"> Update </a>

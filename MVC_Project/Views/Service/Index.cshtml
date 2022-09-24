@@ -1,0 +1,19 @@
+﻿   @using MVC_Project.Repository
+
+   @inject IStudentRepository injService
+<!-- inject Service 2 times in one Request in Controller and View 
+
+     In Case Transient=> Create 2 object For one Request
+     InCase Scoped=>Create One Object For one Request
+     InCase Singleton=>Create one Object For All Requests
+
+
+-->
+<h1> From Controller Service ID=@ViewBag.ServiceId </h1>>
+<h1> From View Service ID=@(injService.id)</h1>>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+

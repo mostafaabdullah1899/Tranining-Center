@@ -1,0 +1,61 @@
+﻿@model Instructor
+@{
+    ViewData["Title"] = "Edit";
+}
+<!-- Tag Helper mix between pure html and tag helper-->
+<!-- asp-route-id="@Model.Id" => RouteValue-->
+<!--asp-route-Salary="@Model.Salary" => Query String -->
+
+
+<h1>Edit</h1>
+<a href="Instructor/Details/@Model.Id" class="btn btn-success">  Details Using Pure Html</a> <br />
+
+@Html.ActionLink("Details Using HTML Helper","Details","Instructor",new{id=Model.Id}, new{@class="btn btn-success"})
+<br />
+@*@{
+    var params=new Dictionary(string, string)
+    {
+    {"ID":,"Model.Id"},
+    {"Salary","Model.Salary"}
+    };
+
+    }
+    asp-all-route-data="params"*@
+<a   asp-action="Details" asp-controller="Instructor" asp-route-id="@Model.Id" asp-route-Salary="@Model.Salary"  class="btn btn-success"> Details Using Tag Helper </a>
+
+<a asp-action="index" asp-controller="Instructor"  asp-fragment="row">Back ToList</a>
+
+<form action="/Instructor/SaveEdit/@Model.Id" method="post">
+    <div>
+        <label>Name</label>
+        <label asp-for="Name"></label>
+        <!-- Pure HTML HTML Attribute ClientSide Attribute-->
+        <input class="form-control" type="text" name="name"  value="@Model.Name" />
+        <!-- Server Side Attribute .Netcore only-->
+        <input asp-for="Name" class="form-control"  />
+        <!-- name="Name" id="Name" type="text" value="@Model.Name"-->
+         <input asp-for="Name"  value="" class="form-control"  />
+    </div>
+     <div>
+        <label>Salary</label>
+        <input class="form-control" type="text" name="salary" value="@Model.Salary" />
+          <input asp-for="Salary" class="form-control"  />
+    </div>
+    <select class="form-control" name="DepartmentId">
+        @foreach (Department item in ViewBag.dept)
+       {
+           if(Model.DepartmentId==item.Id)
+            {
+                <option selected value="@item.Id" >@item.Name</option>
+            }
+            else
+            {
+                <option  value="@item.Id" >@item.Name</option>
+            }
+        }
+
+        
+    </select>
+    <input class="btn btn-primary" type="submit" value="UPdate"/>
+
+</form>

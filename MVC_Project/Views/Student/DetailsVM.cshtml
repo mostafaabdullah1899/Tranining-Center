@@ -1,0 +1,20 @@
+﻿@model StudentWithBranchListViewModel
+@*Strong TypeView
+ViewModel Using with Display data from more than Model and Extra Information
+
+
+*@
+
+<ul> 
+<li>@Model.StdName</li>
+<li>@Model.StdAddress</li>
+<li>@Model.StdAge </li>
+<li>@Model.msg</li>
+<li style="background-color:@Model.color">@Model.temp</li>
+</ul>
+<select class="form-control">
+    @foreach (var item in Model.branches)
+   {
+       <option> item</option>
+   }
+</select>

@@ -1,0 +1,107 @@
+﻿@model List<Department>
+@{
+    ViewData["Title"] = "Index";
+    SelectList deptList = new SelectList(Model, "Id", "Name");
+}
+<h1 ></h1>
+
+<h1 id="index">Index </h1>
+<h2>Display Department Instructors </h2>
+
+<select name="Dept" id="Dept" asp-items="deptList" onchange="GetInstructors()" class="form-control" > 
+    <option value="0">Select Department</option>
+</select>
+<select name="Inst" id="Inst" class="form-control" > 
+
+</select>
+<script>
+function GetInstructors()
+{
+    var Dept=document.getElementById("Dept").value
+      $.ajax(
+          {
+              url: "/Department/GetInstructors",
+              data: {"Dept":Dept},
+          success: function(result){
+              console.log(result)
+               document.getElementById("Inst").innerHTML =""
+              for (let item of result) 
+              {
+                   document.getElementById("Inst").innerHTML +="<option > "+ item.name+"</option>"
+              }
+          }
+          }
+          );
+}
+</script>
+
+
+
+
+
+
+
+<select name="dept" id="dept" asp-items="deptList" onchange="getStudents()" class="form-control">
+    <option value="0">Select Department</option>
+</select>
+<hr />
+<ul id="stdData">
+
+</ul>
+ <script>
+function getStudents()
+{
+    var dept = document.getElementById("dept").value;
+    console.log(dept)
+    $.ajax(
+        {
+            url: "/Department/GetStudents",
+            //Ajax Call Action Return Json
+            data: { "deptId": dept },
+            success: function(result) {
+                console.log(result)
+                
+            document.getElementById("stdData").innerHTML = "";
+                for (let std of result) 
+                { 
+                    document.getElementById("stdData").innerHTML += "<li>" +std.name+ "</li>";
+                    // +=  Operator For Adding items in list
+                }
+
+
+            }
+        }
+    );
+}
+
+ </script>
+ 
+ 
+@*<a  class="btn btn-success" asp-action="New" asp-controller="Department" asp-fragment="add"> Add New Department</a>
+<br />
+
+<table  class="table table-bordered table-hover">
+    <tr> 
+        <td> ID</td>
+         <td> Name</td>
+          <td> ManagerName</td>
+          <td> Details</td>
+          <td> Edit</td>
+          <td> Delete</td>
+        
+    </tr>
+    @foreach (var item in Model)
+   {
+       <tr>
+       <td>@item.Id </td>    
+       <td>@item.Name </td>
+       <td>@item.ManagerName </td>
+       <td><a  asp-action="Details" asp-controller="Department" asp-route-id="@item.Id" asp-fragment="details"> Details</a> </td>
+       <td> <a asp-action="Edit" asp-controller="Department" asp-route-id="@item.Id" asp-fragment="index" >Edit</a></td>
+       <td><a asp-controller="Department" asp-action="Delete" asp-route-id="@item.Id" asp-fragment="index">Delete</a></td>
+       </tr>
+       
+   }
+</table>
+<a href="/product/index">BackToList </a>*@
+

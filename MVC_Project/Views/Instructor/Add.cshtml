@@ -1,0 +1,29 @@
+﻿@model Instructor
+
+<form action="/Instructor/SaveAdd" method="post">
+    <div>
+        <label>Name</label>
+        <input class="form-control" type="text" name="name"  value="@Model.Name" />
+    </div>
+     <div>
+        <label>Salary</label>
+        <input class="form-control" type="text" name="salary" value="@Model.Salary" />
+    </div>
+    <select class="form-control" name="DepartmentId">
+        @foreach (Department item in ViewBag.dept)
+       {
+           if(Model.DepartmentId==item.Id)
+            {
+                <option selected value="@item.Id" >@item.Name</option>
+            }
+            else
+            {
+                <option  value="@item.Id" >@item.Name</option>
+            }
+        }
+
+        
+    </select>
+    <input class="btn btn-primary" type="submit" value="Add"/>
+
+</form>

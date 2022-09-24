@@ -1,0 +1,23 @@
+﻿@model Course
+<!-- Strong Partial View Return Model-->
+
+<table class="table table-bordered">
+    <tr>
+        <td>Name</td>
+        <td>Degree</td>
+        <td>MinDegree</td>
+        
+    </tr>
+    
+       <tr>
+           <td>@Model.Name</td>
+           <td>@Model.Degree</td>
+           <td>@Model.MinDegree</td>
+         
+          
+       </tr>
+   
+
+</table>
+
+<a asp-action="index"  class="btn btn-primary">Back To List</a>

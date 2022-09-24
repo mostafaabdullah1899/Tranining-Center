@@ -1,0 +1,40 @@
+﻿<h1> Hellooooooooooooooo</h1>
+
+
+<!--Razor Engine* Server side-->
+<!--Block of code-->
+@{
+    int x = 6;
+    int y = 8;
+    string name = "mostafa";
+}
+<!-- Inline code-->
+<h1> Hi @name</h1>
+
+<!-- name render to html -->
+
+@{
+
+    if(x>y)
+    {
+        <h1>@x > @y </h1>
+    }
+    else if(x==y)
+    {
+        <h1>@x= @y </h1>
+    }
+    else
+    {
+        <h1> @x noequal  @y </h1>
+
+    }
+}
+
+@*Razor execute first*@
+
+@{
+    for (var i = 0; i < 5; i++)
+    {
+        <li>@i </li>
+    }
+}

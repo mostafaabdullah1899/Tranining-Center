@@ -1,0 +1,40 @@
+﻿@model List<Student>
+@{
+    ViewData["Title"] = "TestAjax";
+    SelectList stdList = new SelectList(Model, "Id", "Name");
+}
+
+<h1>TestAjax</h1>
+<select asp-items="stdList" name="std" id="std" onchange="getDetails()" class="form-control">
+    <option value="0">Select Student</option>
+</select>
+
+<div id="stdDetails" class="container">
+
+</div>
+@section Scripts
+{
+<script>
+    function getDetails()
+    {
+        //ajaxCall
+     var stdId=   document.getElementById("std").value //return object student value=Student ID of Select
+     console.log(stdId)
+     
+       $.ajax(
+           {url: "/Student/TestPartialView", //value=>RouteValues
+           //Ajax Call Action Return Partial View
+            data:{"id":stdId},             //Value=>Query
+            success: function(result)       //Key:value=> anonyomsFunction
+            {
+                console.log(result)
+                document.getElementById("stdDetails").innerHTML=result
+
+           // $("#div1").html(result);
+            }
+           }
+           );
+
+   }
+</script>
+}

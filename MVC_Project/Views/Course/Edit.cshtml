@@ -1,0 +1,37 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Edit";
+    SelectList instList = new SelectList(ViewBag.Inst, "Id", "Name");
+}
+
+<h1>Edit</h1>
+
+<form method="post" asp-action="SaveEdit" asp-controller="Course" asp-route-id="@Model.Id">
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <label asp-for="Degree"></label>
+    <input  asp-for="Degree" class="form-control"/>
+    <span asp-validation-for="Degree" class="text-danger"></span>
+
+    <label asp-for="MinDegree"></label>
+    <input asp-for="MinDegree" class="form-control"/>
+    <span asp-validation-for="MinDegree" class="text-danger"></span>
+
+    <label asp-for="InstructorId"></label>
+    <select asp-for="InstructorId" asp-items="instList" class="form-control">
+        <option value="0">Select Instructor</option>
+    </select>
+    <span asp-validation-for="InstructorId" class="text-danger"></span>
+
+    <input type="submit" value="Update" class="btn btn-primary" />
+
+</form>
+
+@section Scripts{
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js" ></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" ></script>
+}

@@ -1,0 +1,18 @@
+﻿@*اى داتا جاية من المودل هتستقبل داخل مودل*@
+
+<!-- Model List<Product> -->
+    <table class="table table-border table-hover"> 
+    @foreach (Product item in Model)
+   {
+       <tr> 
+           <td> @item.Id</td>
+             <td>@item.Name</td>
+              <td> @item.Price</td>
+                <td> @item.Description</td>
+                <td> <img src="/Images/@item.img"/> </td>
+                <td> <a href="/product/details/@item.Id"> Details </a> </td>
+       </tr>
+       
+   }
+   </table>
+  @* view take one model*@
